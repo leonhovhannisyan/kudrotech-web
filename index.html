@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Twoje Imię i Nazwisko – Usługi IT / Freelance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Freelance specjalista IT – automatyzacja, DevOps, administracja systemami, doradztwo.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #f97373;
+      --radius: 14px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0));
+      border-bottom: 1px solid rgba(15, 23, 42, 0.7);
+    }
+
+    header .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      margin-top: 12px;
+    }
+
+    .hero {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 520px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .badge span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .cta-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      box-shadow: none;
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 55%);
+      border-radius: 22px;
+      padding: 16px 18px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-metric {
+      font-size: 13px;
+    }
+
+    .hero-metric strong {
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .section p.lead {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #020617, #020617);
+      border-radius: var(--radius);
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 18px;
+      align-items: flex-start;
+      background: radial-gradient(circle at top right, #1e293b 0, #020617 40%);
+      padding: 16px 18px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: var(--shadow);
+      margin-top: 10px;
+    }
+
+    dl {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    dt {
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 720px) {
+      header .wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-box {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <div class="brand">Twoje Imię i Nazwisko</div>
+      <nav>
+        <a href="#services">Usługi</a>
+        <a href="#projects">Projekty</a>
+        <a href="#about">O mnie</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="badge">
+          <span class="dot"></span>
+          Dostępny na nowe projekty · B2B
+        </div>
+        <h1 class="hero-title">
+          Specjalista IT / DevOps<br>dla firm, które nie lubią „papierowego” IT.
+        </h1>
+        <p class="hero-sub">
+          Pomagam zespołom IT automatyzować infrastrukturę, usprawniać deploye i
+          ogarniać monitoring tak, żeby serwery robiły to, co trzeba – bez nocnych niespodzianek.
+        </p>
+        <div class="cta-row">
+          <a href="#contact" class="btn">Napisz do mnie</a>
+          <a href="#services" class="btn btn-outline">Zobacz, w czym pomagam</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Podsumowanie zawodowe">
+        <div class="hero-meta">
+          <span>Freelance / B2B</span>
+          <span>PL · Remote / hybrid</span>
+        </div>
+        <div class="hero-metric">
+          <strong>8+ lat</strong><br> doświadczenia w IT
+        </div>
+        <p class="small" style="margin-top:8px;">
+          Automatyzacja (Ansible, Jenkins), administracja Linux, monitoring (Zabbix),
+          CI/CD, skrypty w Python/Bash. Wspieram działy IT od analizy po wdrożenie.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Ansible</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">Zabbix</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Python</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- USŁUGI -->
+    <section id="services" class="section">
+      <h2>W czym mogę pomóc</h2>
+      <p class="lead">
+        Współpracuję głównie w modelu B2B z firmami z branży IT / software house’ami
+        oraz działami IT w firmach produkcyjnych i usługowych.
+      </p>
+      <div class="grid">
+        <article class="card">
+          <h3>Automatyzacja infrastruktury</h3>
+          <p>
+            Projektuję i wdrażam playbooki Ansible, standaryzuję konfiguracje i
+            porządkuję istniejące „legacy”, tak żeby serwery dało się odtwarzać automatycznie.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Ansible</span>
+            <span class="tag">Linux</span>
+            <span class="tag">standaryzacja</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>CI/CD i procesy aktualizacji</h3>
+          <p>
+            Buduję i usprawniam pipeline’y w Jenkinsie, integruję je z systemami ticketowymi
+            oraz monitoringiem, ustawiam raporty z wdrożeń i aktualizacji.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Jenkins</span>
+            <span class="tag">Git</span>
+            <span class="tag">pipeline’y</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Monitoring i stabilność</h3>
+          <p>
+            Konfiguruję i porządkuję monitoring (np. Zabbix), tworzę sensowne alerty,
+            raporty SLA oraz integracje z zewnętrznymi systemami.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Zabbix</span>
+            <span class="tag">alerty</span>
+            <span class="tag">SLA</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJEKTY -->
+    <section id="projects" class="section">
+      <h2>Wybrane projekty</h2>
+      <p class="lead">
+        Kilka przykładowych tematów, przy których pomagałem. Szczegóły chętnie opowiem na krótkim callu.
+      </p>
+      <div class="grid">
+        <article class="card">
+          <h3>Standaryzacja aktualizacji serwerów</h3>
+          <p>
+            Przygotowanie centralnego systemu aktualizacji Linux w oparciu o Ansible + Jenkins,
+            raportowanie do Zabbixa, automatyczne generowanie raportów z patchowania.
+          </p>
+          <p class="small"><strong>Rola:</strong> projekt, wdrożenie, dokumentacja</p>
+        </article>
+        <article class="card">
+          <h3>Monitoring środowisk produkcyjnych</h3>
+          <p>
+            Uporządkowanie i rozbudowa Zabbixa: grupy hostów, szablony, notyfikacje, raporty
+            dla biznesu. Redukcja „szumu alertowego” i jasne priorytety.
+          </p>
+          <p class="small"><strong>Rola:</strong> audyt, rekomendacje, konfiguracja</p>
+        </article>
+        <article class="card">
+          <h3>Automatyczne raporty dla działu IT</h3>
+          <p>
+            Skrypty w Pythonie do zbierania danych z różnych systemów (Zabbix, CMDB, Jenkins)
+            i generowania raportów XLSX dla managementu.
+          </p>
+          <p class="small"><strong>Rola:</strong> implementacja, utrzymanie</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- O MNIE -->
+    <section id="about" class="section">
+      <h2>O mnie</h2>
+      <p class="lead">
+        Od kilku lat zawodowo zajmuję się infrastrukturą, automatyzacją i „sklejaniem”
+        narzędzi w spójny proces. Nie przepadam za ręcznym klikanem – wolę, kiedy
+        powtarzalne rzeczy robią się same.
+      </p>
+      <p class="small">
+        Pracuję głównie zdalnie, preferuję długoterminową współpracę w modelu B2B,
+        ale jestem otwarty też na krótsze, konkretne zlecenia (np. audyt, proof-of-concept, konsultacje).
+      </p>
+      <div class="tag-row" style="margin-top:10px;">
+        <span class="tag">B2B PL / UE</span>
+        <span class="tag">zdalnie</span>
+        <span class="tag">angielski – B2/C1</span>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="contact" class="section">
+      <h2>Kontakt</h2>
+      <p class="lead">
+        Najszybciej złapiesz mnie mailowo. Zazwyczaj odpowiadam w ciągu 1–2 dni roboczych.
+      </p>
+      <div class="contact-box">
+        <div>
+          <h3>Porozmawiajmy o Twojej infrastrukturze</h3>
+          <p class="small">
+            Napisz kilka zdań o tym, w jakim środowisku działasz (ile serwerów, jakie systemy,
+            główne problemy). Podeślę propozycję współpracy lub zaproponuję krótkie spotkanie online.
+          </p>
+        </div>
+        <div>
+          <dl>
+            <dt>E-mail</dt>
+            <dd><a href="mailto:twoj.mail@domena.pl">twoj.mail@domena.pl</a></dd>
+
+            <dt>LinkedIn</dt>
+            <dd><a href="#" target="_blank" rel="noopener">Twój profil LinkedIn</a></dd>
+
+            <dt>Dane firmy</dt>
+            <dd>
+              Nazwa firmy / Imię i nazwisko<br>
+              NIP: 0000000000<br>
+              Polska
+            </dd>
+          </dl>
+          <p class="small" style="margin-top:10px;">
+            Na życzenie podpisuję NDA przed rozpoczęciem współpracy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Twoje Imię i Nazwisko · Usługi IT / DevOps · Polska
+    </footer>
+  </main>
+
+  <script>
+    // Aktualny rok w stopce
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
